@@ -1,0 +1,20 @@
+[
+    {
+        "url": "http://bank.fraud.login",
+        "result": "PHISHING",
+        "confidence": 92.71,
+        "time": "31-08-2026 19:52:33"
+    },
+    {
+        "url": "https://google.com",
+        "result": "LEGITIMATE",
+        "confidence": 96.92,
+        "time": "31-08-2026 22:58:30"
+    },
+    {
+        "url": "http://bank-account-verification.example",
+        "result": "PHISHING",
+        "confidence": 92.92,
+        "time": "31-08-2026 23:13:25"
+    }
+]

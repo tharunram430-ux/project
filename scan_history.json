@@ -1,0 +1,56 @@
+[
+    {
+        "url": "https://fraud.bank.login",
+        "result": "LEGITIMATE",
+        "confidence": 95.71,
+        "time": "31-08-2026 19:15:59"
+    },
+    {
+        "url": "https://https.frud.bank-login",
+        "result": "PHISHING",
+        "confidence": 95.71,
+        "time": "31-08-2026 19:23:00"
+    },
+    {
+        "url": "https://secure-bank-login.example/account",
+        "result": "PHISHING",
+        "confidence": 95.58,
+        "time": "31-08-2026 19:23:35"
+    },
+    {
+        "url": "https://payment-confirmation.example/login",
+        "result": "PHISHING",
+        "confidence": 95.58,
+        "time": "31-08-2026 19:23:49"
+    },
+    {
+        "url": "https://www.google.com",
+        "result": "LEGITIMATE",
+        "confidence": 97.06,
+        "time": "31-08-2026 19:24:00"
+    },
+    {
+        "url": "http://www.google.com",
+        "result": "PHISHING",
+        "confidence": 90.01,
+        "time": "31-08-2026 19:24:08"
+    },
+    {
+        "url": "https://password-reset-security.example/confirm",
+        "result": "PHISHING",
+        "confidence": 95.58,
+        "time": "31-08-2026 19:24:31"
+    },
+    {
+        "url": "https://www.amazon.com",
+        "result": "LEGITIMATE",
+        "confidence": 95.71,
+        "time": "31-08-2026 19:24:42"
+    },
+    {
+        "url": "https://fraud-detection-alert.example/login",
+        "result": "PHISHING",
+        "confidence": 95.58,
+        "time": "31-08-2026 19:24:53"
+    }
+]

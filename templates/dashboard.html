@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PhishGuard | Dashboard</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #07111f;
+            color: white;
+        }
+
+        header {
+            background: #0d1b2a;
+            padding: 18px 35px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            border-bottom: 1px solid #20384d;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #00c8ff;
+        }
+
+        .status {
+            color: #00ff9d;
+            font-size: 13px;
+        }
+
+        main {
+            width: 90%;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+
+        .welcome {
+            margin-bottom: 30px;
+        }
+
+        .welcome h1 {
+            margin-bottom: 8px;
+        }
+
+        .welcome p {
+            color: #8da1b3;
+        }
+
+        .scanner {
+            background: #0d1b2a;
+            padding: 30px;
+            border: 1px solid #20384d;
+            border-radius: 12px;
+        }
+
+        .scanner h2 {
+            margin-top: 0;
+            font-size: 18px;
+        }
+
+        .scanner p {
+            color: #8195a8;
+            font-size: 14px;
+        }
+
+        form {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        input {
+            flex: 1;
+            padding: 15px;
+
+            background: #07111f;
+            color: white;
+
+            border: 1px solid #345;
+            border-radius: 7px;
+
+            font-size: 15px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #00c8ff;
+        }
+
+        button {
+            padding: 15px 25px;
+
+            background: #008cff;
+            color: white;
+
+            border: none;
+            border-radius: 7px;
+
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #006dcc;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .card {
+            background: #0d1b2a;
+            padding: 22px;
+
+            border: 1px solid #20384d;
+            border-radius: 10px;
+        }
+
+        .card-icon {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .card-title {
+            color: #71889d;
+            font-size: 12px;
+        }
+
+        .card-value {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 7px;
+        }
+
+        .features {
+            margin-top: 25px;
+
+            background: #0d1b2a;
+            padding: 25px;
+
+            border: 1px solid #20384d;
+            border-radius: 10px;
+        }
+
+        .features h2 {
+            font-size: 18px;
+            margin-top: 0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .feature {
+            background: #07111f;
+            padding: 14px;
+
+            border: 1px solid #1b3449;
+            border-radius: 7px;
+
+            color: #9aabba;
+            font-size: 13px;
+        }
+
+        .feature span {
+            color: #00ff9d;
+            margin-right: 5px;
+        }
+
+
+        /* ==========================================
+           BOTTOM BUTTONS
+        ========================================== */
+
+        .bottom-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+
+        /* ==========================================
+           SCAN HISTORY BUTTON
+        ========================================== */
+
+        .history-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 11px 18px;
+
+            background: #0d1b2a;
+            color: #00c8ff;
+
+            border: 1px solid #00c8ff;
+            border-radius: 7px;
+
+            text-decoration: none;
+
+            font-size: 13px;
+            font-weight: bold;
+
+            transition: 0.2s;
+        }
+
+        .history-btn:hover {
+            background: #00c8ff;
+            color: #07111f;
+            box-shadow: 0 0 15px rgba(0, 200, 255, 0.25);
+        }
+
+
+        /* ==========================================
+           LOGOUT BUTTON
+        ========================================== */
+
+        .logout {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #ff7180;
+            text-decoration: none;
+
+            border: 1px solid #65313a;
+
+            padding: 11px 18px;
+
+            border-radius: 7px;
+
+            font-size: 13px;
+            font-weight: bold;
+
+            transition: 0.2s;
+        }
+
+        .logout:hover {
+            background: #35151a;
+        }
+
+
+        /* ==========================================
+           MOBILE
+        ========================================== */
+
+        @media(max-width:700px) {
+
+            header {
+                padding: 18px;
+            }
+
+            main {
+                width: 94%;
+            }
+
+            form {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .bottom-buttons {
+                flex-direction: column;
+            }
+
+            .history-btn,
+            .logout {
+                width: 100%;
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="logo">
+        🛡️ PHISH<span>GUARD</span>
+    </div>
+
+    <div class="status">
+        ● SYSTEM ACTIVE
+    </div>
+
+</header>
+
+
+<main>
+
+
+    <!-- WELCOME -->
+
+    <div class="welcome">
+
+        <h1>
+            Investigation Dashboard
+        </h1>
+
+        <p>
+            Analyze a website and detect possible phishing threats.
+        </p>
+
+    </div>
+
+
+    <!-- URL SCANNER -->
+
+    <div class="scanner">
+
+        <h2>
+            🔍 URL Threat Analyzer
+        </h2>
+
+        <p>
+            Enter a website URL below to analyze it using the
+            machine learning detection system.
+        </p>
+
+
+        <form
+            method="POST"
+            action="{{ url_for('predict') }}"
+        >
+
+            <input
+                type="text"
+                name="url"
+                placeholder="Enter URL e.g. http://example.com"
+                required
+            >
+
+            <button type="submit">
+                SCAN URL
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- SYSTEM CARDS -->
+
+    <div class="cards">
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                🧠
+            </div>
+
+            <div class="card-title">
+                AI ENGINE
+            </div>
+
+            <div class="card-value">
+                ONLINE
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                🔬
+            </div>
+
+            <div class="card-title">
+                FEATURES
+            </div>
+
+            <div class="card-value">
+                41
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                🌐
+            </div>
+
+            <div class="card-title">
+                URL MONITOR
+            </div>
+
+            <div class="card-value">
+                ACTIVE
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- DETECTION MODULES -->
+
+    <div class="features">
+
+        <h2>
+            Detection Modules
+        </h2>
+
+
+        <div class="feature-grid">
+
+
+            <div class="feature">
+                <span>✓</span>
+                URL Structure
+            </div>
+
+
+            <div class="feature">
+                <span>✓</span>
+                Domain Analysis
+            </div>
+
+
+            <div class="feature">
+                <span>✓</span>
+                HTTPS Detection
+            </div>
+
+
+            <div class="feature">
+                <span>✓</span>
+                Obfuscation
+            </div>
+
+
+            <div class="feature">
+                <span>✓</span>
+                Redirect Analysis
+            </div>
+
+
+            <div class="feature">
+                <span>✓</span>
+                Page Structure
+            </div>
+
+
+            <div class="feature">
+                <span>✓</span>
+                External References
+            </div>
+
+
+            <div class="feature">
+                <span>✓</span>
+                ML Classification
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- BOTTOM BUTTONS -->
+
+    <div class="bottom-buttons">
+
+
+        <a
+            href="{{ url_for('history') }}"
+            class="history-btn"
+        >
+            📋 Scan History
+        </a>
+
+
+        <a
+            href="{{ url_for('logout') }}"
+            class="logout"
+        >
+            ← Logout
+        </a>
+
+
+    </div>
+
+
+</main>
+
+
+</body>
+
+</html>

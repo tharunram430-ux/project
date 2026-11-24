@@ -1,0 +1,570 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>PhishGuard | Scan History</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #07111f;
+            color: white;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            background: #0d1b2a;
+            padding: 18px 35px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            border-bottom: 1px solid #20384d;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #00c8ff;
+        }
+
+        .status {
+            color: #00ff9d;
+            font-size: 13px;
+        }
+
+        /* ================= MAIN ================= */
+
+        main {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        /* ================= TITLE ================= */
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .description {
+            color: #8da1b3;
+            margin-top: 8px;
+        }
+
+        /* ================= BUTTONS ================= */
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .dashboard-btn {
+            display: inline-block;
+
+            text-decoration: none;
+
+            color: white;
+
+            background: #008cff;
+
+            padding: 11px 16px;
+
+            border-radius: 7px;
+
+            font-weight: bold;
+
+            font-size: 13px;
+
+            border: 1px solid #008cff;
+
+            transition: 0.2s;
+        }
+
+        .dashboard-btn:hover {
+            background: #006dcc;
+            border-color: #006dcc;
+        }
+
+        .clear-btn {
+            color: #ff7180;
+
+            background: #35151a;
+
+            border: 1px solid #65313a;
+
+            padding: 10px 16px;
+
+            border-radius: 7px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            font-size: 13px;
+        }
+
+        .clear-btn:hover {
+            background: #4a1b22;
+        }
+
+        /* ================= HISTORY CARD ================= */
+
+        .history-card {
+            background: #0d1b2a;
+
+            border: 1px solid #20384d;
+
+            border-radius: 12px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.25);
+        }
+
+        /* ================= TABLE ================= */
+
+        table {
+            width: 100%;
+
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #101f30;
+
+            color: #71889d;
+
+            padding: 16px;
+
+            text-align: left;
+
+            font-size: 12px;
+
+            letter-spacing: 1px;
+        }
+
+        td {
+            padding: 16px;
+
+            border-top: 1px solid #20384d;
+
+            font-size: 14px;
+        }
+
+        tr:hover {
+            background: #102235;
+        }
+
+        /* ================= URL ================= */
+
+        .url {
+            color: #d8e4ed;
+
+            word-break: break-all;
+
+            max-width: 450px;
+        }
+
+        /* ================= PHISHING ================= */
+
+        .phishing {
+            display: inline-block;
+
+            padding: 6px 10px;
+
+            border-radius: 20px;
+
+            background: #35151a;
+
+            color: #ff7583;
+
+            border: 1px solid #84313d;
+
+            font-size: 11px;
+
+            font-weight: bold;
+        }
+
+        /* ================= LEGITIMATE ================= */
+
+        .legitimate {
+            display: inline-block;
+
+            padding: 6px 10px;
+
+            border-radius: 20px;
+
+            background: #0d382d;
+
+            color: #00ff9d;
+
+            border: 1px solid #176b55;
+
+            font-size: 11px;
+
+            font-weight: bold;
+        }
+
+        /* ================= CONFIDENCE ================= */
+
+        .confidence {
+            color: #00c8ff;
+
+            font-weight: bold;
+        }
+
+        /* ================= EMPTY ================= */
+
+        .empty {
+            text-align: center;
+
+            padding: 70px 20px;
+
+            color: #71889d;
+        }
+
+        .empty-icon {
+            font-size: 50px;
+
+            margin-bottom: 15px;
+        }
+
+        .empty h2 {
+            color: white;
+        }
+
+        /* ================= LOGOUT ================= */
+
+        .logout {
+            display: inline-block;
+
+            margin-top: 25px;
+
+            color: #ff7180;
+
+            text-decoration: none;
+
+            border: 1px solid #65313a;
+
+            padding: 9px 15px;
+
+            border-radius: 7px;
+
+            font-size: 13px;
+        }
+
+        .logout:hover {
+            background: #35151a;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media(max-width:700px) {
+
+            header {
+                padding: 18px;
+            }
+
+            main {
+                width: 94%;
+            }
+
+            .top {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 20px;
+            }
+
+            .buttons {
+                width: 100%;
+            }
+
+            .dashboard-btn,
+            .clear-btn {
+                flex: 1;
+
+                text-align: center;
+            }
+
+            .history-card {
+                overflow-x: auto;
+            }
+
+            table {
+                min-width: 750px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="logo">
+
+        🛡️ PHISH<span>GUARD</span>
+
+    </div>
+
+    <div class="status">
+
+        ● SYSTEM ACTIVE
+
+    </div>
+
+</header>
+
+
+<main>
+
+
+    <!-- ================= PAGE TITLE ================= -->
+
+    <div class="top">
+
+        <div>
+
+            <h1>
+                Scan History
+            </h1>
+
+            <p class="description">
+                View previously analyzed URLs and their detection results.
+            </p>
+
+        </div>
+
+
+        <div class="buttons">
+
+
+            <!-- DASHBOARD BUTTON -->
+
+            <a href="{{ url_for('dashboard') }}"
+               class="dashboard-btn">
+
+                ← Dashboard
+
+            </a>
+
+
+            <!-- CLEAR HISTORY BUTTON -->
+
+            {% if history %}
+
+            <form method="POST"
+                  action="{{ url_for('clear_history') }}"
+                  onsubmit="return confirm('Are you sure you want to clear all scan history?');">
+
+                <button type="submit"
+                        class="clear-btn">
+
+                    🗑 Clear History
+
+                </button>
+
+            </form>
+
+            {% endif %}
+
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= HISTORY ================= -->
+
+    <div class="history-card">
+
+
+        {% if history %}
+
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        #
+                    </th>
+
+                    <th>
+                        URL
+                    </th>
+
+                    <th>
+                        RESULT
+                    </th>
+
+                    <th>
+                        CONFIDENCE
+                    </th>
+
+                    <th>
+                        DATE & TIME
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+
+                {% for scan in history %}
+
+
+                <tr>
+
+
+                    <td>
+                        {{ loop.index }}
+                    </td>
+
+
+                    <td class="url">
+                        {{ scan.url }}
+                    </td>
+
+
+                    <td>
+
+
+                        {% if scan.result == "PHISHING" %}
+
+
+                        <span class="phishing">
+
+                            ⚠ PHISHING
+
+                        </span>
+
+
+                        {% else %}
+
+
+                        <span class="legitimate">
+
+                            ✓ LEGITIMATE
+
+                        </span>
+
+
+                        {% endif %}
+
+
+                    </td>
+
+
+                    <td class="confidence">
+
+                        {{ scan.confidence }}%
+
+                    </td>
+
+
+                    <td>
+
+                        {{ scan.time }}
+
+                    </td>
+
+
+                </tr>
+
+
+                {% endfor %}
+
+
+            </tbody>
+
+        </table>
+
+
+        {% else %}
+
+
+        <!-- ================= NO HISTORY ================= -->
+
+        <div class="empty">
+
+            <div class="empty-icon">
+                📋
+            </div>
+
+            <h2>
+                No Scan History
+            </h2>
+
+            <p>
+                Scan a URL from the dashboard and the result will appear here.
+            </p>
+
+        </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+
+    <!-- ================= LOGOUT ================= -->
+
+    <a href="{{ url_for('logout') }}"
+       class="logout">
+
+        ← Logout
+
+    </a>
+
+
+</main>
+
+
+</body>
+
+</html>
